@@ -1,0 +1,14 @@
+{
+  "importCSSModule": {
+    "prefix": "csm",
+    "scope": "javascript,typescript,javascriptreact",
+    "body": ["import styles from './${TM_FILENAME_BASE}.module.css'"],
+    "description": "Import CSS Module as `styles`"
+  },
+  "importPropTypes": {
+    "prefix": "impprop",
+    "scope": "javascript, typescript,javascriptreact",
+    "body": ["import PropTypes from 'prop-types'"],
+    "description": "Import Proptypes"
+  }
+}
