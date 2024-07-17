@@ -26,6 +26,25 @@ return {
     end,
   },
 
+  lsp = {
+    config = {
+      -- ["server-settings"] = {
+      emmet_ls = {
+        filetypes = {
+          "html",
+          "css",
+          "javascript",
+          "javascriptreact",
+          "jsx",
+          "typescript",
+          "typescriptreact",
+          "tsx",
+          -- etc
+        },
+        -- }
+      },
+    },
+  },
   -- -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   -- {
   --   "L3MON4D3/LuaSnip",
