@@ -30,15 +30,31 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
-        scrolloff = 15,
+        scrolloff = 45,
         timeoutlen = 100,
         showcmd = true,
         cmdheight = 2,
+        conceallevel = 0,
+        linebreak = true,
+        list = true,
+        listchars = { tab = " ", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
+        showbreak = "﬌ ",
+        clipboard = "",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+      },
+    },
+    autocmds = {
+      auto_spell = {
+        {
+          event = "FileType",
+          desc = "Enable spell for text like documents",
+          pattern = { "gitcommit", "markdown", "text", "plaintex" },
+          callback = function() vim.opt_local.spell = true end,
+        },
       },
     },
     -- Mappings can be configured through AstroCore as well.
@@ -47,12 +63,17 @@ return {
       -- first key is the mode
       n = {
         -- second key is the lefthand side of the map
-
         -- navigate buffer tabs with `H` and `L`
         L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
-        -- mappings seen under group name "Buffer"
+        ["<LocalLeader>y"] = { '"+y', desc = "Copy to system clipboard" },
+        ["<LocalLeader>Y"] = { '"+yg_', desc = "Copy to system clipboard" },
+        ["<LocalLeader>d"] = { '"+d', desc = "Copy to system clipboard" },
+        -- ["<LocalLeader>y"] = { '"+y', desc = "Copy to system clipboard" },
+        -- ["<LocalLeader>y"] = { '"+y', desc = "Copy to system clipboard" },
+        --
+        --
         ["<Leader>bD"] = {
           function()
             require("astroui.status.heirline").buffer_picker(
